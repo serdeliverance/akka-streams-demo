@@ -10,6 +10,8 @@ import io.github.serdeliverance.models.Transaction
 import io.github.serdeliverance.utils.{EncryptionUtils, JsonSupport}
 
 import java.nio.file.Paths
+import io.circe.parser.decode
+import slick.jdbc.PostgresProfile.api._
 
 object TransactionLoader extends App with JsonSupport with EncryptionUtils {
 
