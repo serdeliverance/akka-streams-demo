@@ -1,4 +1,4 @@
-package io.github.serdeliverance.examples
+package io.github.serdeliverance.examples.part1
 
 import akka.actor.ActorSystem
 import akka.stream.scaladsl.{Sink, Source}

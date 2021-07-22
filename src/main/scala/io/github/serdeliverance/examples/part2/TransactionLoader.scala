@@ -1,17 +1,15 @@
-package io.github.serdeliverance.examples
+package io.github.serdeliverance.examples.part2
 
 import akka.actor.ActorSystem
 import akka.stream.alpakka.slick.scaladsl.{Slick, SlickSession}
 import akka.stream.scaladsl.{FileIO, Framing}
 import akka.util.ByteString
 import com.typesafe.config.ConfigFactory
-import io.circe.parser.decode
 import io.github.serdeliverance.db.TransactionTable.transactionTable
 import io.github.serdeliverance.models.Transaction
 import io.github.serdeliverance.utils.{EncryptionUtils, JsonSupport}
 
 import java.nio.file.Paths
-import slick.jdbc.PostgresProfile.api._
 
 object TransactionLoader extends App with JsonSupport with EncryptionUtils {
 
