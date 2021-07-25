@@ -3,7 +3,7 @@ package io.github.serdeliverance.examples.part1
 import akka.NotUsed
 import akka.actor.ActorSystem
 import akka.stream.IOResult
-import akka.stream.scaladsl.{FileIO, Flow, Sink, Source}
+import akka.stream.scaladsl.{FileIO, Flow, Keep, RunnableGraph, Sink, Source}
 import akka.util.ByteString
 
 import java.nio.file.Paths
@@ -25,11 +25,21 @@ object Example3_Materialization extends App {
 
   val sinkToFile: Sink[ByteString, Future[IOResult]] = FileIO.toPath(Paths.get("result.txt")) // emits a file
 
-  val result1: NotUsed = sourceList
-    .via(addOne)
-    .via(convertToByteString)
-    .to(sinkToFile)
-    .run()
+  // via example
+  val combinedSource
+    : Source[ByteString, NotUsed] = sourceList.via(convertToByteString) // materialize the value of sourceList which is of type NotUsed
+
+  // via mat
+  val combinedSource2 = sourceList.viaMat(addOne)((mat1, mat2) => mat2)
+
+  // or the equivalent
+  val combinedSource3 = sourceList.viaMat(addOne)(Keep.left)
+
+  // to example
+  val graph: NotUsed = combinedSource.to(sinkToFile).run() // materialize the left side value (the value of the source)
+
+  // toMat
+  val graph2: RunnableGraph[Future[IOResult]] = combinedSource.toMat(sinkToFile)(Keep.right) // we override this behaviour with toMat and choosing Keep.right
 
   val sinkIgnore = Sink.ignore
 
