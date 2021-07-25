@@ -12,7 +12,7 @@ import scala.concurrent.Future
 /**
   * Example that shows component reutilization
   */
-object Example2 extends App {
+object Example2_Reutilization extends App {
 
   implicit val system = ActorSystem("Example2")
 

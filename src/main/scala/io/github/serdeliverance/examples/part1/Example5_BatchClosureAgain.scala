@@ -10,21 +10,13 @@ import slick.jdbc.PostgresProfile.api._
 
 import java.nio.file.Paths
 
-object BatchClosure extends App {
+object Example5_BatchClosureAgain extends App {
 
   implicit val system  = ActorSystem("BatchClosure")
   implicit val ec      = system.dispatcher
   implicit val session = SlickSession.forConfig("slick-postgres")
 
   private val EMPTY_CARD_TYPE = ""
-
-//  val clientBalanceOutputFile = Paths.get("client-balance.txt")
-//
-//  val result = Slick
-//    .source(transactionTable.filter(t => t.email === "conception.hessel@gmail.com").result)
-//    .fold(BigDecimal(0))((acc, tx) => tx.amount + acc)
-//    .map(amount => ByteString(amount.toString()))
-//    .runWith(FileIO.toPath(clientBalanceOutputFile))
 
   val brandBalanceOutputFile = Paths.get("brand-balance.txt")
 
