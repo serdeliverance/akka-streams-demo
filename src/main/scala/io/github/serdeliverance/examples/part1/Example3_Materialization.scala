@@ -40,10 +40,4 @@ object Example3_Materialization extends App {
 
   // toMat
   val graph2: RunnableGraph[Future[IOResult]] = combinedSource.toMat(sinkToFile)(Keep.right) // we override this behaviour with toMat and choosing Keep.right
-
-  val sinkIgnore = Sink.ignore
-
-  val source: Source[Int, NotUsed] = Source(1 to 1000)
-
-  val result: NotUsed = sinkIgnore.runWith(source)
 }
