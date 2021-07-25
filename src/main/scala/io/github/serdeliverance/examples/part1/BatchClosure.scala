@@ -18,24 +18,24 @@ object BatchClosure extends App {
 
   private val EMPTY_CARD_TYPE = ""
 
-//  val outputFile = Paths.get("client-balance.txt")
-
+//  val clientBalanceOutputFile = Paths.get("client-balance.txt")
+//
 //  val result = Slick
 //    .source(transactionTable.filter(t => t.email === "conception.hessel@gmail.com").result)
 //    .fold(BigDecimal(0))((acc, tx) => tx.amount + acc)
 //    .map(amount => ByteString(amount.toString()))
-//    .runWith(FileIO.toPath(outputFile))
+//    .runWith(FileIO.toPath(clientBalanceOutputFile))
 
-  val outputFile2 = Paths.get("brand-balance.txt")
+  val brandBalanceOutputFile = Paths.get("brand-balance.txt")
 
   val result = Slick
-    .source(transactionTable.result)
+    .source(transactionTable.filter(_.status === "approved").result)
     .groupBy(20, _.cardType)
     .fold((EMPTY_CARD_TYPE, BigDecimal(0)))((acc, tx) => (tx.cardType, tx.amount + acc._2))
     .mergeSubstreams
     .map(cardTypeAndTotal => s"cardType: ${cardTypeAndTotal._1}, total: ${cardTypeAndTotal._2}")
     .map(line => ByteString(line + System.lineSeparator()))
-    .runWith(FileIO.toPath(outputFile2))
+    .runWith(FileIO.toPath(brandBalanceOutputFile))
 
   result.onComplete { _ =>
     system.terminate()
