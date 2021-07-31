@@ -13,6 +13,11 @@ import java.nio.file.Paths
 import io.circe.parser.decode
 import slick.jdbc.PostgresProfile.api._
 
+/**
+  * TransactionLoader example
+  *
+  * Before running this sample, be sure to have all dockers up (docker-compose up) and to have run transactionLoaderGenerator.sh
+  */
 object TransactionLoader extends App with JsonSupport with EncryptionUtils {
 
   val config = ConfigFactory.load()

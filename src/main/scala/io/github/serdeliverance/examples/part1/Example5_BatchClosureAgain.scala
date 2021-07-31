@@ -10,6 +10,11 @@ import slick.jdbc.PostgresProfile.api._
 
 import java.nio.file.Paths
 
+/**
+  * BatchClosure example 2
+  *
+  * Before running this sample, be sure to have all dockers up (docker-compose up) and to have run batchclosureGenerator.sh
+  */
 object Example5_BatchClosureAgain extends App {
 
   implicit val system  = ActorSystem("BatchClosure")
