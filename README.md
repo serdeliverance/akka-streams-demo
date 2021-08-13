@@ -23,7 +23,7 @@ This repo has the supporting code for the following posts about Akka Streams:
 
 * `TransactionLoader`: Another real world problem example and its solution using this technology.
 
-* Also, there are generators (TransactionGenerator and XXXX) for creating dummy data for the previous examples. Those are also pipeline examples you can check it out.
+* Also, there are generators ([TransactionGenerator](./src/main/scala/io/github/serdeliverance/generator/TransactionLoaderGenerator.scala) and [BatchClosureGenerator](./src/main/scala/io/github/serdeliverance/generator/BatchClosureGenerator.scala)) for creating dummy data for the previous examples. Those are also pipeline examples you can check it out.
 
 ## Run the example
 
