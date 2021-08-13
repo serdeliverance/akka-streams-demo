@@ -3,7 +3,7 @@
 This repo has the supporting code for the following posts about Akka Streams:
 
 * [Akka Streams Getting Started (on my personal blog)](https://serdeliverance.github.io/blog/blog/akka-streams-getting-started/)
-* [Akka Streams Getting Started (Medium Post) ------- coming soon](http://google.com)
+* [Akka Streams Getting Started (Medium Post)](https://medium.com/@canosergio90/akka-streams-getting-started-32b5ebc60604)
 
 ## Requirements
 
